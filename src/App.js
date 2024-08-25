@@ -1,16 +1,16 @@
-
- import MainPage from './mainPage';
-import Navbar from './navbar';
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Youtube from './Youtube'; 
+import MainPage from './mainPage';
+import Youtube from './Youtube';
 import DictionarySearch from './Dictionary';
+import Register from './register';
+
 function App() {
   return (
     <Router>
-      <Navbar />
       <Routes>
-        <Route path="/" element={<MainPage />} />
+        <Route path="/" element={<Register />} />
+        <Route path="/main" element={<MainPage />} />
         <Route path="/youtube" element={<Youtube />} />
         <Route path="/dictionary" element={<DictionarySearch />} />
       </Routes>
