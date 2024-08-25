@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Register from './register.js';
+//import Register from './register.js';
 //import App from './App';
+import Post from './post.js';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Register/>
+    <Post/>
   </React.StrictMode>
 );
 
