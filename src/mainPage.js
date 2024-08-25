@@ -26,7 +26,7 @@ const MainPage= () => {
           alt="Card 1"
           className="card-image"
         />
-        <h3>YOUTUBE</h3>
+        <h3>Youtube</h3>
         <p>Search Youtube and select your desired video to play it</p>
       </Link>
         </div>
@@ -46,7 +46,7 @@ const MainPage= () => {
             alt="Card 3"
             className="card-image"
           />
-          <h3>Card 3</h3>
+          <h3>Dictionary</h3>
           <p>Search for meanings and keywords </p>
         </Link>
         </div>
