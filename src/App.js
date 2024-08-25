@@ -1,13 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
-import MainPage from './mainPage';
+
+ import MainPage from './mainPage';
 import Navbar from './navbar';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Youtube from './Youtube'; 
+import DictionarySearch from './Dictionary';
 function App() {
   return (
-    <div className="App">
+    <Router>
       <Navbar />
-     <MainPage/>
-    </div>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/youtube" element={<Youtube />} />
+        <Route path="/dictionary" element={<DictionarySearch />} />
+      </Routes>
+    </Router>
   );
 }
 

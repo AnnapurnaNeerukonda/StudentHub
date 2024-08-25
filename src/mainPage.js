@@ -3,6 +3,9 @@ import '../src/styles/mainPage.css'
 import mainPhoto from './images/mainPhoto.jpg';
 import YouTube from './images/youtube.jpeg'
 import Post from './images/post.png'
+import Dictionary from './images/dictionary.jpg'
+import ToDo from './images/todolist.jpg'
+import { Link } from 'react-router-dom';
 const MainPage= () => {
   return (
     <div className="photo-text-cards-container">
@@ -17,13 +20,15 @@ const MainPage= () => {
       
       <div className="cards-container">
         <div className="card">
-          <img
-            src={YouTube}
-            alt="Card 1"
-            className="card-image"
-          />
-          <h3>YOUTUBE</h3>
-          <p>Search Youtube and select your desired video to play it</p>
+        <Link to="/youtube" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <img
+          src={YouTube}
+          alt="Card 1"
+          className="card-image"
+        />
+        <h3>YOUTUBE</h3>
+        <p>Search Youtube and select your desired video to play it</p>
+      </Link>
         </div>
         <div className="card">
           <img
@@ -35,22 +40,24 @@ const MainPage= () => {
           <p>Share your Achivements and thoughts here .</p>
         </div>
         <div className="card">
+        <Link to="/dictionary" style={{ textDecoration: 'none', color: 'inherit' }}>
           <img
-            src="https://via.placeholder.com/150"
+            src={Dictionary}
             alt="Card 3"
             className="card-image"
           />
           <h3>Card 3</h3>
-          <p>Description for card 3.</p>
+          <p>Search for meanings and keywords </p>
+        </Link>
         </div>
         <div className="card">
           <img
-            src="https://via.placeholder.com/150"
+            src={ToDo}
             alt="Card 4"
             className="card-image"
           />
-          <h3>Card 4</h3>
-          <p>Description for card 4.</p>
+          <h3>To do</h3>
+          <p>Add your to do list for the day and remove them as you finish</p>
         </div>
       </div>
     </div>
