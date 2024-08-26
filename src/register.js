@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Navbar from './navbar'; 
+import { useNavigate, Link } from 'react-router-dom';
 import './styles/Register.css';
 
 function Register() {
   const [isLogin, setIsLogin] = useState(true);
-  const [loginData, setLoginData] = useState({ username: '', password: '' });
+  const [loginData, setLoginData] = useState({ email: '', password: '' });
   const [signupData, setSignupData] = useState({ username: '', email: '', password: '', gender: '', tel: '' });
 
+  const navigate = useNavigate();
 
   const handleLoginChange = (e) => {
     setLoginData({
@@ -23,19 +23,53 @@ function Register() {
     });
   };
 
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    console.log('Login data:', loginData);
+    console.log(loginData);
+    try {
+      const response = await fetch('http://localhost:4001/loginUser', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(loginData),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        alert(data.message);
+        navigate('/main');
+      } else {
+        alert(data.message || 'Login failed. Please try again.');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      alert('An error occurred. Please try again.');
+    }
   };
 
-  const handleSignupSubmit = (e) => {
+  const handleSignupSubmit = async (e) => {
     e.preventDefault();
-    console.log('Signup data:', signupData);
+    try {
+      const response = await fetch('http://localhost:4001/registerUser', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(signupData),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        alert(data.message);
+        setIsLogin(true);
+      } else {
+        alert(data.message || 'Registration failed. Please try again.');
+      }
+    } catch (error) {
+      console.error('Signup error:', error);
+      alert('An error occurred. Please try again.');
+    }
   };
-
   return (
-    <div>
-      <Navbar /> 
       <div className="register-container">
         <div className="image-side">
           <img
@@ -54,12 +88,13 @@ function Register() {
                     <input
                       type="text"
                       className="form-control"
-                      name="username"
-                      placeholder="Enter username"
-                      value={loginData.username}
+                    name="email"
+                    placeholder="Enter email"
+                    value={loginData.email}
                       onChange={handleLoginChange}
                       required
                       autoComplete="off"
+                    aria-label="email"
                     />
                   </div>
                   <div className="mb-3">
@@ -72,10 +107,11 @@ function Register() {
                       onChange={handleLoginChange}
                       required
                       autoComplete="off"
+                    aria-label="Password"
                     />
                   </div>
                   <button type="submit" className="btn">Login</button>
-                  <p>Not a member yet? <a href="#" onClick={() => setIsLogin(false)}>Sign Up</a></p>
+                <p>Not a member yet? <Link to="#" onClick={() => setIsLogin(false)}>Sign Up</Link></p>
                 </form>
               ) : (
                 <form onSubmit={handleSignupSubmit} autoComplete="off">
@@ -90,6 +126,7 @@ function Register() {
                       onChange={handleSignupChange}
                       required
                       autoComplete="off"
+                    aria-label="Username"
                     />
                   </div>
                   <div className="mb-3">
@@ -102,6 +139,7 @@ function Register() {
                       onChange={handleSignupChange}
                       required
                       autoComplete="off"
+                    aria-label="Email"
                     />
                   </div>
                   <div className="mb-3">
@@ -114,6 +152,7 @@ function Register() {
                       onChange={handleSignupChange}
                       required
                       autoComplete="off"
+                    aria-label="Password"
                     />
                   </div>
                   <div className="mb-3">
@@ -123,6 +162,7 @@ function Register() {
                       value={signupData.gender}
                       onChange={handleSignupChange}
                       required
+                    aria-label="Gender"
                     >
                       <option value="">Select gender</option>
                       <option value="male">Male</option>
@@ -130,28 +170,14 @@ function Register() {
                       <option value="other">Other</option>
                     </select>
                   </div>
-                  <div className="mb-3">
-                    <input
-                      type="tel"
-                      className="form-control"
-                      name="tel"
-                      placeholder="Enter Phone number"
-                      value={signupData.tel}
-                      onChange={handleSignupChange}
-                      minLength="10"
-                      required
-                      autoComplete="off"
-                    />
-                  </div>
                   <button type="submit" className="btn">Sign Up</button>
-                  <p>Already have an account? <a href="#" onClick={() => setIsLogin(true)}>Login</a></p>
+                <p>Already have an account? <Link to="#" onClick={() => setIsLogin(true)}>Login</Link></p>
                 </form>
               )}
             </div>
           </div>
         </div>
       </div>
-    </div>
   );
 }
 

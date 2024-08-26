@@ -1,10 +1,11 @@
 import React from 'react';
-import '../src/styles/mainPage.css'
+import '../src/styles/mainPage.css';
 import mainPhoto from './images/mainPhoto.jpg';
-import YouTube from './images/youtube.jpeg'
-import Post from './images/post.png'
-import Dictionary from './images/dictionary.jpg'
-import ToDo from './images/todolist.jpg'
+import YouTube from './images/youtube.jpeg';
+import Navbar from './navbar';
+import Post from './images/post.png';
+import Dictionary from './images/dictionary.jpg';
+import ToDo from './images/todolist.jpg';
 import { Link } from 'react-router-dom';
 const MainPage= () => {
   return (
