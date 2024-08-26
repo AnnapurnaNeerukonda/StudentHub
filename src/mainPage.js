@@ -9,6 +9,8 @@ import ToDo from './images/todolist.jpg';
 import { Link } from 'react-router-dom';
 const MainPage= () => {
   return (
+    <div>
+    <Navbar/>
     <div className="photo-text-cards-container">
       <div className="photo-container">
         <img
@@ -32,6 +34,7 @@ const MainPage= () => {
       </Link>
         </div>
         <div className="card">
+        <Link to="/post" style={{ textDecoration: 'none', color: 'inherit' }}>
           <img
             src={Post}
             alt="Card 2"
@@ -39,6 +42,7 @@ const MainPage= () => {
           />
           <h3>Post Community</h3>
           <p>Share your Achivements and thoughts here .</p>
+        </Link>
         </div>
         <div className="card">
         <Link to="/dictionary" style={{ textDecoration: 'none', color: 'inherit' }}>

@@ -4,7 +4,7 @@ import MainPage from './mainPage';
 import Youtube from './Youtube';
 import DictionarySearch from './Dictionary';
 import Register from './register';
-
+import Post from './post'
 function App() {
   return (
     <Router>
@@ -13,6 +13,7 @@ function App() {
         <Route path="/main" element={<MainPage />} />
         <Route path="/youtube" element={<Youtube />} />
         <Route path="/dictionary" element={<DictionarySearch />} />
+        <Route path="/post" element={<Post/>} />
       </Routes>
     </Router>
   );

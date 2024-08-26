@@ -25,7 +25,6 @@ function Register() {
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    console.log(loginData);
     try {
       const response = await fetch('http://localhost:4001/loginUser', {
         method: 'POST',
@@ -34,9 +33,12 @@ function Register() {
         },
         body: JSON.stringify(loginData),
       });
+  
       const data = await response.json();
       if (response.ok) {
         alert(data.message);
+        localStorage.setItem('uid', data.userData.uid);
+        localStorage.setItem('token', data.userData.token); 
         navigate('/main');
       } else {
         alert(data.message || 'Login failed. Please try again.');
