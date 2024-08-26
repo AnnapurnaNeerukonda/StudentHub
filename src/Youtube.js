@@ -23,7 +23,7 @@ const YouTubeSearch = () => {
           key: 'AIzaSyBPJiE1G4K7GDV3nViF6lpf2JniPGE0xhk'
         }
       });
-
+         
       const videos = response.data.items.map(item => ({
         title: item.snippet.title,
         thumbnail: item.snippet.thumbnails.high.url,
