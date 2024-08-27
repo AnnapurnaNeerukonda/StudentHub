@@ -19,17 +19,14 @@ const Dictionary = () => {
         try {
             const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${encodedQuery}`;
             console.log(`Request URL: ${url}`);
-
             const response = await axios.get(url);
             console.log('API Response:', response.data);
-
             const data = response.data[0];
             const phonetics = data.phonetics[0]?.text || '';
             const audio = data.phonetics[0]?.audio || '';
             const definition = data.meanings[0]?.definitions[0]?.definition || '';
             const example = data.meanings[0]?.definitions[0]?.example || '';
             const synonyms = data.meanings[0]?.definitions[0]?.synonyms || [];
-
             setResult({
                 phonetics,
                 audio,
@@ -38,7 +35,6 @@ const Dictionary = () => {
                 synonyms
             });
         } catch (err) {
-            // Check for API response error
             const errorMessage = err.response
                 ? (err.response.data && err.response.data.message) || 'An error occurred while fetching results.'
                 : 'An error occurred.';

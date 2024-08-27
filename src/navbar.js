@@ -14,7 +14,7 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <div className="navbar-brand">StudentHub</div>
+      <div className="navbar-brand">Student Smart Hub</div>
       <div className="navbar-icons">
         <FaUser
           title="User Details"

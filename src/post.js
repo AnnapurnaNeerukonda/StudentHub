@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import NewsFeed from './display-posts';
-
+import Navbar from './navbar';
 function Post() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -106,6 +106,8 @@ function Post() {
     };
 
     return (
+        <>
+        <Navbar/>
         <div style={containerStyle}>
             <form onSubmit={handleSubmit} style={formStyle}>
                 <h3 style={{ margin: '0 0 10px 0' }}>Enter Title</h3>
@@ -143,6 +145,7 @@ function Post() {
             </form>
             <NewsFeed />
         </div>
+        </>
     );
 }
 

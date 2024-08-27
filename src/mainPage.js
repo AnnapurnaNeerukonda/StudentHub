@@ -17,7 +17,7 @@ const MainPage= () => {
     const token = localStorage.getItem('token');
     
     if (!uid || !token) {
-      navigate('/login');
+      navigate('/');
     }
   }, [navigate]);
   return (
