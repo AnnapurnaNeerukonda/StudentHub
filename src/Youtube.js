@@ -17,10 +17,11 @@ const YouTubeSearch = () => {
       const response = await axios.get('https://www.googleapis.com/youtube/v3/search', {
         params: {
           part: 'snippet',
-          q: query,
+          q: `${query} educational`,
           type: 'video',
           maxResults: 10,
-          key: 'AIzaSyBPJiE1G4K7GDV3nViF6lpf2JniPGE0xhk'
+          key: 'AIzaSyBPJiE1G4K7GDV3nViF6lpf2JniPGE0xhk',
+          videoCategoryId: '27'
         }
       });
          

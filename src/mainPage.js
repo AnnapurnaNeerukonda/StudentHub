@@ -1,4 +1,6 @@
 import React from 'react';
+import { useNavigate} from 'react-router-dom';
+import { useEffect } from 'react';
 import '../src/styles/mainPage.css';
 import mainPhoto from './images/mainPhoto.jpg';
 import YouTube from './images/youtube.jpeg';
@@ -8,6 +10,16 @@ import Dictionary from './images/dictionary.jpg';
 import ToDo from './images/todolist.jpg';
 import { Link } from 'react-router-dom';
 const MainPage= () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const uid = localStorage.getItem('uid');
+    const token = localStorage.getItem('token');
+    
+    if (!uid || !token) {
+      navigate('/login');
+    }
+  }, [navigate]);
   return (
     <div>
     <Navbar/>
@@ -56,6 +68,7 @@ const MainPage= () => {
         </Link>
         </div>
         <div className="card">
+        <Link to="/todo" style={{ textDecoration: 'none', color: 'inherit' }}>
           <img
             src={ToDo}
             alt="Card 4"
@@ -63,6 +76,7 @@ const MainPage= () => {
           />
           <h3>To do</h3>
           <p>Add your to do list for the day and remove them as you finish</p>
+          </Link>
         </div>
       </div>
     </div>

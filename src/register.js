@@ -26,7 +26,7 @@ function Register() {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:4001/loginUser', {
+      const response = await fetch('http://localhost:4000/loginUser', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -37,6 +37,8 @@ function Register() {
       const data = await response.json();
       if (response.ok) {
         alert(data.message);
+        console.log(data.userData.uid);
+        console.log(data.userData.token);
         localStorage.setItem('uid', data.userData.uid);
         localStorage.setItem('token', data.userData.token); 
         navigate('/main');
@@ -52,18 +54,25 @@ function Register() {
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:4001/registerUser', {
+      const response = await fetch('http://localhost:4000/registerUser', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(signupData),
       });
+  
       const data = await response.json();
+      console.log('Server response:', data);
+  
       if (response.ok) {
+        // Assuming the response contains uid and token
+        localStorage.setItem('uid', data.uid); // Adjust according to actual response structure
+        localStorage.setItem('token', data.token); // Adjust according to actual response structure
         alert(data.message);
         setIsLogin(true);
       } else {
+        // Handle specific error messages or general errors
         alert(data.message || 'Registration failed. Please try again.');
       }
     } catch (error) {
@@ -71,6 +80,7 @@ function Register() {
       alert('An error occurred. Please try again.');
     }
   };
+  
   return (
     <div className="register-container">
       <div className="image-side">
